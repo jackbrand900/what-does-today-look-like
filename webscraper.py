@@ -36,16 +36,8 @@ for url in f:
     clean_text = clean_text.replace("/", " ")
     clean_text = re.sub(' +', ' ', clean_text)   
 
-    # getting named entities from cleaned text
-    tokens = nlp(clean_text)
-    for word in tokens.ents:
-        if word.text in ne_by_word:
-            ne = ne_by_word[word.text]
-            ne['count'] = ne['count'] + 1
-        else:
-            ne_by_word[word.text] = {'label': word.label_ , 'count': 1}
-
     # splitting text into sentences
+    tokens = nlp(clean_text)
     sentence = []
     for sent in tokens.sents:
         sentence.append(sent.text.strip())
