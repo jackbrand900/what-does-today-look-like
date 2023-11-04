@@ -1,5 +1,5 @@
-https://www.cnn.com/
-https://www.nbcnews.com/
-https://www.today.com/trending
-https://apnews.com/
-https://ew.com/
+https://apnews.com/world-news
+https://apnews.com/us-news
+https://apnews.com/politics
+https://apnews.com/entertainment
+https://apnews.com/business
