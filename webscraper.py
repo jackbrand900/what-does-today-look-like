@@ -13,17 +13,20 @@ import time
 class Webscraper:
     def __init__(self, safe_mode=True):
         self.safe_mode=safe_mode
-        self.prompt='I am going to give you a list of sentences. Combine the sentences and create a short, one sentence image caption from them. Here is the list of sentences: \n'
+        self.prompt="""
+        I am going to give you a list of sentences.
+        Pick the most important themes and create a short, one sentence image caption from them, written in a style that fits the themes. 
+        The caption you give should be inclosed in tags <caption>. Here is the list of sentences: \n"""
         self.words_to_exclude=self.populate_words_to_exclude([], 'header_words.txt')
         if safe_mode:
             self.words_to_exclude=self.populate_words_to_exclude(self.words_to_exclude, 'excluded_topics.txt')
 
-    def populate_words_to_exclude(words_to_exclude, file_name): 
+    def populate_words_to_exclude(self, words_to_exclude, file_name): 
         with open(file_name, 'r') as opened_file:
             words_to_exclude.extend([line.strip() for line in opened_file.readlines()])
         return words_to_exclude
 
-    def get_completion(prompt, model='gpt-3.5-turbo'):
+    def get_completion(self, prompt, model='gpt-3.5-turbo'):
         completion=openai.ChatCompletion.create(
             model=model,
             messages=[{'role': 'system', 'content': prompt}]
@@ -81,9 +84,9 @@ class Webscraper:
             all_sent=''
             for sent in total_df.head()['sentence']:
                 all_sent+=(sent + '\n')
-            prompt+=all_sent
-            response=self.get_completion(prompt)
-            return response.content
+            self.prompt+=all_sent
+            response=self.get_completion(self.prompt)
+            return response
 
 
 
