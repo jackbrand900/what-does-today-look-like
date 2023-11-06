@@ -15,7 +15,8 @@ class Webscraper:
         self.safe_mode=safe_mode
         self.prompt="""
         I am going to give you a list of sentences.
-        Pick the most important themes and create a short, one sentence image caption from them, written in a style that fits the themes. 
+        Create a short, one sentence image caption with the most important themes and events.
+        Write the caption in a style that fits the themes. 
         The caption you give should be inclosed in tags <caption>. Here is the list of sentences: \n"""
         self.words_to_exclude=self.populate_words_to_exclude([], 'header_words.txt')
         if safe_mode:
