@@ -20,7 +20,7 @@ caption_text = 'What Does Today Look Like? #wdtll\n\n' + caption_with_tags.split
 print('Caption: ' + caption_text)
 
 image_gen = img.ImageGen()
-image_bytes = image_gen.query(caption_text)
+image_bytes = image_gen.query('Cartoon style painting: ' + caption_text)
 image = Image.open(io.BytesIO(image_bytes))
 image.show()
 
@@ -35,7 +35,6 @@ auth = tweepy.OAuthHandler(consumer_key=consumer_key, consumer_secret=consumer_s
 auth.set_access_token(key=access_token, secret=access_token_secret)
 api = tweepy.API(auth)
 
- /opt/homebrew/Caskroom/miniforge/base/envs/wdtll/bin/python /Users/jackbrand/Desktop/coding/homelab/what-does-today-look-like/wdtll.py
 # Upload media to Twitter APIv1.1
 ret = api.media_upload(filename=file_name, file=b)
 
