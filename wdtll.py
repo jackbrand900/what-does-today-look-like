@@ -19,16 +19,22 @@ caption_text = 'What Does Today Look Like? #wdtll\n\n' + caption_with_tags.split
 
 print('Caption: ' + caption_text)
 
+art_mode = True
 image_gen = img.ImageGen()
-image_bytes = image_gen.query('Cartoon style painting: ' + caption_text)
+query = ''
+if art_mode: 
+    query = 'Cartoon style painting: '
+query = query + caption_text
+image_bytes = image_gen.query(query)
 image = Image.open(io.BytesIO(image_bytes))
 image.show()
 
 # Save image in-memory
 b = io.BytesIO()
 current_date = datetime.now().strftime("%Y-%m-%d")
-file_name = 'wdtll-' + current_date
-image.save(b, "PNG")
+formatted_datetime = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+file_name = 'wdtll-' + formatted_datetime + '.png'
+image.save(file_name)
 b.seek(0)
 
 auth = tweepy.OAuthHandler(consumer_key=consumer_key, consumer_secret=consumer_secret)
