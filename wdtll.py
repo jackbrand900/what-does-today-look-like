@@ -33,8 +33,10 @@ image.show()
 b = io.BytesIO()
 current_date = datetime.now().strftime("%Y-%m-%d")
 formatted_datetime = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
-file_name = 'wdtll-' + formatted_datetime + '.png'
-image.save(file_name)
+file_name = 'wdtll-' + formatted_datetime
+file_name_loc = file_name + '.png'
+image.save(file_name_loc)
+image.save(b, "PNG")
 b.seek(0)
 
 auth = tweepy.OAuthHandler(consumer_key=consumer_key, consumer_secret=consumer_secret)
@@ -52,4 +54,4 @@ client = tweepy.Client(
     access_token_secret=access_token_secret
 )
 
-client.create_tweet(media_ids=[ret.media_id_string], text=caption_text[:200])
+client.create_tweet(media_ids=[ret.media_id_string], text=caption_text[:280])
