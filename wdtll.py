@@ -46,4 +46,4 @@ client = tweepy.Client(
     access_token_secret=access_token_secret
 )
 
-client.create_tweet(media_ids=[ret.media_id_string], text=caption_text)
+client.create_tweet(media_ids=[ret.media_id_string], text=caption_text[:200])
